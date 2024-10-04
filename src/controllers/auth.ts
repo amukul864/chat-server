@@ -50,7 +50,7 @@ export const passportLocal = async (req: Request, res: Response) => {
 			res.cookie("token", token, {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === "production",
-				sameSite: "strict",
+				sameSite: "none",
 				maxAge:
 					user.username.split(" ")[1] === "30d"
 						? maxAge30Days
@@ -96,7 +96,7 @@ export const passportSocial = async (req: Request, res: Response) => {
 			res.cookie("token", token, {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === "production",
-				sameSite: "strict",
+				sameSite: "none",
 				maxAge: maxAge30Days,
 			});
 			res.redirect(process.env.CLIENT_URL);
@@ -295,7 +295,7 @@ export const verifySecurityToken = async (req: Request, res: Response) => {
 					res.cookie("token", loginToken, {
 						httpOnly: true,
 						secure: process.env.NODE_ENV === "production",
-						sameSite: "strict",
+						sameSite: "none",
 						maxAge: maxAge1Day,
 					});
 					existingUser.token = loginToken;
